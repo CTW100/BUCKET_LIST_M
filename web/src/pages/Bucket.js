@@ -6,13 +6,16 @@ import Row from 'react-bootstrap/Row';
 import Dropzone from 'react-dropzone';
 import { BsPlusLg } from 'react-icons/bs';
 import Image from 'react-bootstrap/Image';
+import { useNavigate } from 'react-router-dom';
 
 const axios = require('axios');
 
-function Bucket() {
+function Bucket(props) {
+	const navigate = useNavigate();
+
 	const [title, setTitle] = useState('');
 	const [url, setUrl] = useState('');
-	const [filepath, setFilepath] = useState([]);
+	const [filepath, setFilepath] = useState('');
 	const [preference, setPreference] = useState('');
 	const [comment, setComment] = useState('');
 
@@ -24,7 +27,7 @@ function Bucket() {
 		setUrl(event.target.value);
 	};
 
-	const onPrefenreceHandler = (event) => {
+	const onPrefenrenceHandler = (event) => {
 		setPreference(event.target.value);
 	};
 
@@ -32,8 +35,9 @@ function Bucket() {
 		setComment(event.target.value);
 	};
 
-	// on going
 	const onSubmitHandler = (event) => {
+		event.preventDefault();
+
 		let body = {
 			title: title,
 			url: url,
@@ -41,8 +45,18 @@ function Bucket() {
 			preference: preference,
 			comment: comment,
 		};
+
+		axios
+			.post(
+				'https://bucket-list-api.run.goorm.io/api/bucket/createbucket',
+				body
+			)
+			.then((response) => {
+				console.log('response.data: ', response.data);
+			});
+
+		navigate('/');
 	};
-	// on going
 
 	const onDropHandler = (files) => {
 		console.log('files: ', files);
@@ -53,6 +67,7 @@ function Bucket() {
 		formData.append('file', files[0]);
 		console.log('formData: ', formData);
 		console.log('formData.file: ', formData.file);
+
 		// axios send
 		axios
 			.post(
@@ -100,21 +115,6 @@ function Bucket() {
 			</Form.Group>
 
 			{/* Video Look */}
-			{/* <Form.Group as={Row} className='mb-3'>
-				<Form.Label column sm={2}>
-					Video look
-				</Form.Label>
-				<Col sm={10}>
-					<Image
-						src='https://bucket-list-api.run.goorm.io/uploads/dami1.png'
-						roundedCircle={true}
-					/>
-					<Image
-						src='https://bucket-list-api.run.goorm.io/uploads/dami2.png'
-						roundedCircle={true}
-					/>
-				</Col>
-			</Form.Group> */}
 			<Dropzone onDrop={onDropHandler}>
 				{({ getRootProps, getInputProps }) => (
 					<section>
@@ -135,7 +135,7 @@ function Bucket() {
 					</section>
 				)}
 			</Dropzone>
-			{filepath !== '' && (
+			{filepath !== null && (
 				<Image
 					src={`https://bucket-list-api.run.goorm.io/${filepath}`}
 					roundedCircle={true}
@@ -146,7 +146,7 @@ function Bucket() {
 			<fieldset>
 				<Form.Group as={Row} className='mb-3'>
 					<Form.Label>Range</Form.Label>
-					<Form.Range onChange={onPrefenreceHandler} />
+					<Form.Range onChange={onPrefenrenceHandler} />
 				</Form.Group>
 			</fieldset>
 

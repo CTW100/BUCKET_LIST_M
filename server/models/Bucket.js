@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bucketSchema = mongoose.Schema({
 	title: { type: String, required: true },
 	url: { type: String, required: true },
-	filepath: [{ type: String }],
+	filepath: { type: String },
 	preference: { type: Number, default: 50 },
 	comment: { type: String, required: true },
 });

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const multer = require('multer');
+const Bucket = require('../models/Bucket');
 
 const storage = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -33,6 +34,13 @@ router.post('/uploadbucket', (req, res) => {
 			filepath: res.req.file.path,
 			filename: res.req.file.filename,
 		});
+	});
+});
+
+router.post('/createbucket', (req, res) => {
+	Bucket.create(req.body, (err, bucket) => {
+		if (err) return res.json({ createSuccess: false, err });
+		res.json({ createSuccess: true, bucket: bucket });
 	});
 });
 

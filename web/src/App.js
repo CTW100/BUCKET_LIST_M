@@ -9,8 +9,8 @@ function App() {
 		<Router>
 			<Navigation />
 			<Routes>
-				<Route path='/' element={<Main />} />
-				<Route path='/new' element={<Bucket />} />
+				<Route path='/' exact element={<Main />} />
+				<Route path='/new' exact element={<Bucket />} />
 			</Routes>
 		</Router>
 	);

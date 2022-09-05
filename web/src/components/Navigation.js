@@ -4,16 +4,16 @@ function Navigation() {
 	return (
 		<Nav>
 			<Nav.Item>
-				<Nav.Link to='/'>Main</Nav.Link>
+				<Nav.Link href='/'>Main</Nav.Link>
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link to='/new'>New</Nav.Link>
+				<Nav.Link href='/new'>New</Nav.Link>
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link eventKey='link-2'>Link</Nav.Link>
+				<Nav.Link href='link-2'>Link</Nav.Link>
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link eventKey='disabled' disabled>
+				<Nav.Link href='disabled' disabled>
 					Disabled
 				</Nav.Link>
 			</Nav.Item>
