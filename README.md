@@ -7,3 +7,5 @@ https://velog.io/@leyuri/Bootstrap-%EA%B3%B5%EB%B0%B1Spacing-%EC%A3%BC%EB%8A%94-
 
 express.static public
 https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=pjok1122&logNo=221545195520
+
+디테일 페이지 무한루프 문제

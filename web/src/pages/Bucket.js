@@ -48,7 +48,7 @@ function Bucket(props) {
 
 		axios
 			.post(
-				'https://bucket-list-api.run.goorm.io/api/bucket/createbucket',
+				'https://bucket-list-api.run.goorm.io/api/bucket/createBucket',
 				body
 			)
 			.then((response) => {
@@ -71,7 +71,7 @@ function Bucket(props) {
 		// axios send
 		axios
 			.post(
-				'https://bucket-list-api.run.goorm.io/api/bucket/uploadbucket',
+				'https://bucket-list-api.run.goorm.io/api/bucket/uploadBucket',
 				formData,
 				config
 			)

@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single('file');
 
-router.post('/uploadbucket', (req, res) => {
+router.post('/uploadBucket', (req, res) => {
 	upload(req, res, (err) => {
 		if (err) {
 			return res.json({ uploadSuccess: false });
@@ -37,10 +37,20 @@ router.post('/uploadbucket', (req, res) => {
 	});
 });
 
-router.post('/createbucket', (req, res) => {
+router.post('/createBucket', (req, res) => {
 	Bucket.create(req.body, (err, bucket) => {
 		if (err) return res.json({ createSuccess: false, err });
 		res.json({ createSuccess: true, bucket: bucket });
+	});
+});
+
+router.post('/getBucket', (req, res) => {
+	Bucket.find({ _id: req.body.bucketID }, (err, bucket) => {
+		if (err) {
+			console.log(err);
+			res.json({ findSuccess: false });
+		}
+		res.json({ findSuccess: true, bucket });
 	});
 });
 
