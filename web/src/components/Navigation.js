@@ -10,12 +10,7 @@ function Navigation() {
 				<Nav.Link href='/new'>New</Nav.Link>
 			</Nav.Item>
 			<Nav.Item>
-				<Nav.Link href='link-2'>Link</Nav.Link>
-			</Nav.Item>
-			<Nav.Item>
-				<Nav.Link href='disabled' disabled>
-					Disabled
-				</Nav.Link>
+				<Nav.Link href='/user/register'>Register</Nav.Link>
 			</Nav.Item>
 		</Nav>
 	);

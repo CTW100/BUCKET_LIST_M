@@ -4,17 +4,34 @@ import Navigation from './components/Navigation';
 import Main from './pages/Main';
 import Bucket from './pages/Bucket';
 import Detail from './pages/Detail';
+import Register from './pages/Register';
+import { Provider } from 'react-redux';
+import { applyMiddleware, createStore } from 'redux';
+import promiseMiddleware from 'redux-promise';
+import ReduxThunk from 'redux-thunk';
+import reducer from './_reducers';
+const createStoreWithMiddleware = applyMiddleware(
+	promiseMiddleware,
+	ReduxThunk
+)(createStore);
 
 function App() {
 	return (
-		<Router>
-			<Navigation />
-			<Routes>
-				<Route path='/' exact element={<Main />} />
-				<Route path='/new' exact element={<Bucket />} />
-				<Route path='/buckets/:bucketID' exact element={<Detail />} />
-			</Routes>
-		</Router>
+		<Provider store={createStoreWithMiddleware(reducer)}>
+			<Router>
+				<Navigation />
+				<Routes>
+					<Route path='/' exact element={<Main />} />
+					<Route path='/new' exact element={<Bucket />} />
+					<Route
+						path='/buckets/:bucketID'
+						exact
+						element={<Detail />}
+					/>
+					<Route path='/user/register' exact element={<Register />} />
+				</Routes>
+			</Router>
+		</Provider>
 	);
 }
 
