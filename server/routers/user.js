@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const auth = require('../middleware/auth');
 
 router.post('/register', (req, res) => {
 	User.create(req.body, (err) => {
@@ -45,6 +46,16 @@ router.post('/login', (req, res) => {
 	});
 });
 
-router.post('/auth', (req, res) => {});
+router.get('/auth', auth, (req, res) => {
+	// 여기까지 미들웨어(auth.js)를 통과해 왔다는 얘기는 Authentication이 True라는 말
+	// 클라이언트에게 유저 정보 전달
+	res.status(200).json({
+		_id: req.user._id,
+		isAuth: true,
+		email: req.user.email,
+	});
+});
+
+router.get('/logout', (req, res) => {});
 
 module.exports = router;

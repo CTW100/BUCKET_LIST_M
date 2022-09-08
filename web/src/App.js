@@ -6,6 +6,7 @@ import Bucket from './pages/Bucket';
 import Detail from './pages/Detail';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import Auth from './hoc/auth';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
@@ -22,15 +23,23 @@ function App() {
 			<Router>
 				<Navigation />
 				<Routes>
-					<Route path='/' exact element={<Main />} />
-					<Route path='/new' exact element={<Bucket />} />
+					<Route path='/' exact element={Auth(Main, null)} />
+					<Route path='/new' exact element={Auth(Bucket, true)} />
 					<Route
 						path='/buckets/:bucketID'
 						exact
-						element={<Detail />}
+						element={Auth(Detail, true)}
 					/>
-					<Route path='/user/register' exact element={<Register />} />
-					<Route path='/user/login' exact element={<Login />} />
+					<Route
+						path='/user/register'
+						exact
+						element={Auth(Register, false)}
+					/>
+					<Route
+						path='/user/login'
+						exact
+						element={Auth(Login, false)}
+					/>
 				</Routes>
 			</Router>
 		</Provider>

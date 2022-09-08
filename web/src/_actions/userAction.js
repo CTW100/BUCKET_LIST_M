@@ -34,4 +34,20 @@ export function registerUser(dataToSubmit) {
 	};
 }
 
-export function authUser(dataToSubmit) {}
+export function authUser() {
+	const request = axios
+		.get('/api/users/auth', { withCredentials: true })
+		.then((response) => {
+			return response.data;
+		});
+
+	return {
+		type: AUTH_USER,
+		payload: request,
+	};
+	// {
+	//     _id: req.user._id,
+	//     isAuth: true,
+	//     email: req.user.email,
+	// }
+}
