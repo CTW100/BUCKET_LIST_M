@@ -5,6 +5,7 @@ import Main from './pages/Main';
 import Bucket from './pages/Bucket';
 import Detail from './pages/Detail';
 import Register from './pages/Register';
+import Login from './pages/Login';
 import { Provider } from 'react-redux';
 import { applyMiddleware, createStore } from 'redux';
 import promiseMiddleware from 'redux-promise';
@@ -29,6 +30,7 @@ function App() {
 						element={<Detail />}
 					/>
 					<Route path='/user/register' exact element={<Register />} />
+					<Route path='/user/login' exact element={<Login />} />
 				</Routes>
 			</Router>
 		</Provider>

@@ -6,7 +6,22 @@
 import axios from 'axios';
 import { LOGIN_USER, REGISTER_USER, AUTH_USER } from './types';
 
-export function loginUser(dataToSubmit) {}
+export function loginUser(dataToSubmit) {
+	const request = axios
+		.post('/api/users/login', dataToSubmit)
+		.then((response) => {
+			console.log('data : ', response.data);
+			return response.data;
+		});
+	// 서버에 데이터를 보낸 후, 서버에서 온 데이터 저장
+	// ({loginSuccess: true, userId: user._id, token: user.token})
+
+	// redux의 action -> 이를 dispatch를 통해 reducer로 보냄
+	return {
+		type: LOGIN_USER,
+		payload: request,
+	};
+}
 
 export function registerUser(dataToSubmit) {
 	const request = axios
