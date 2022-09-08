@@ -12,19 +12,14 @@ function Detail() {
 	const [bucket, setBucket] = useState({});
 
 	useEffect(() => {
-		axios
-			.post(
-				'https://bucket-list-api.run.goorm.io/api/bucket/getBucket',
-				bucketVariable
-			)
-			.then((response) => {
-				if (response.data.findSuccess) {
-					console.log(response.data.bucket);
-					setBucket(response.data.bucket[0]);
-				} else {
-					alert('Failed to find BUCKET');
-				}
-			});
+		axios.post('/api/bucket/getBucket', bucketVariable).then((response) => {
+			if (response.data.findSuccess) {
+				console.log(response.data.bucket);
+				setBucket(response.data.bucket[0]);
+			} else {
+				alert('Failed to find BUCKET');
+			}
+		});
 	}, []);
 
 	return (

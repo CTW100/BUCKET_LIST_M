@@ -5,6 +5,7 @@ module.exports = function (app) {
 		'/api',
 		createProxyMiddleware({
 			target: 'https://bucket-list-api.run.goorm.io',
+			changeOrigin: true,
 		})
 	);
 };

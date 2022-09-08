@@ -10,11 +10,7 @@ export function loginUser(dataToSubmit) {}
 
 export function registerUser(dataToSubmit) {
 	const request = axios
-		.post(
-			'https://bucket-list-api.run.goorm.io/api/users/register',
-			dataToSubmit,
-			{ withCredentials: true }
-		)
+		.post('/api/users/register', dataToSubmit)
 		.then((response) => response.data);
 
 	return {

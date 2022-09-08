@@ -7,16 +7,14 @@ function Main() {
 	const [buckets, setBuckets] = useState([]);
 
 	useEffect(() => {
-		axios
-			.get('https://bucket-list-api.run.goorm.io/api/getBuckets')
-			.then((response) => {
-				if (response.data.buckets) {
-					console.log(response.data.buckets);
-					setBuckets(response.data.buckets);
-				} else {
-					alert('Failed to get BUCKETS');
-				}
-			});
+		axios.get('/api/getBuckets').then((response) => {
+			if (response.data.buckets) {
+				console.log(response.data.buckets);
+				setBuckets(response.data.buckets);
+			} else {
+				alert('Failed to get BUCKETS');
+			}
+		});
 	}, []);
 
 	const result = buckets.map((bucket, index) => (

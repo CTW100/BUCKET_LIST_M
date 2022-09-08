@@ -46,14 +46,9 @@ function Bucket(props) {
 			comment: comment,
 		};
 
-		axios
-			.post(
-				'https://bucket-list-api.run.goorm.io/api/bucket/createBucket',
-				body
-			)
-			.then((response) => {
-				console.log('response.data: ', response.data);
-			});
+		axios.post('/api/bucket/createBucket', body).then((response) => {
+			console.log('response.data: ', response.data);
+		});
 
 		navigate('/');
 	};
@@ -70,11 +65,7 @@ function Bucket(props) {
 
 		// axios send
 		axios
-			.post(
-				'https://bucket-list-api.run.goorm.io/api/bucket/uploadBucket',
-				formData,
-				config
-			)
+			.post('/api/bucket/uploadBucket', formData, config)
 			.then((response) => {
 				if (response.data.uploadSuccess) {
 					setFilepath(response.data.filepath);
